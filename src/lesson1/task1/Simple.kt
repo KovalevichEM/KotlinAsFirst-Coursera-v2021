@@ -53,12 +53,12 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
  * Пример главной функции
  */
 fun main() {
-    //val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
-    //println("Root product: $x1x2")
-    //println(seconds(8, 20, 35))
-    //println(lengthInMeters(8, 2, 11))
-    //println(numberRevert(201))
-    //println(travelMinutes(9, 25, 13, 1))
+    val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
+    println("Root product: $x1x2")
+    println(seconds(8, 20, 35))
+    println(lengthInMeters(8, 2, 11))
+    println(numberRevert(201))
+    println(travelMinutes(9, 25, 13, 1))
     println(thirdDigit(3801))
 }
 
