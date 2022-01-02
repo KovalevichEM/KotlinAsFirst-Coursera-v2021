@@ -18,7 +18,16 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean = TODO()
+fun isNumberHappy(number: Int): Boolean {
+    val num_one_a = number / 1000
+    val num_one_b = (number / 100) % 10
+    val num_two_a = (number % 100) / 10
+    val num_two_b = (number % 10)
+    val result_one = num_one_a + num_one_b
+    val result_two = num_two_a + num_two_b
+
+    return result_one == result_two
+}
 
 /**
  * Простая (2 балла)
@@ -27,7 +36,26 @@ fun isNumberHappy(number: Int): Boolean = TODO()
  * Определить, угрожают ли они друг другу. Вернуть true, если угрожают.
  * Считать, что ферзи не могут загораживать друг друга.
  */
-fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
+fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
+    if (x1 == x2) {
+        return true
+    } else if (y1 == y2) {
+        return true
+    } else if (x2 - x1 == y2 - y1) {
+        return true
+    } else if ((x2 - x1) == 1) {
+        return true
+    } else if ((x2 - x1) == -1) {
+        return true
+    } else if ((y2 - y1 == 1)) {
+        return true
+    } else if ((y2 - y1 == -1)) {
+        return true
+    } else {
+        return false
+    }
+
+}
 
 
 /**
@@ -36,7 +64,32 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Дан номер месяца (от 1 до 12 включительно) и год (положительный).
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
-fun daysInMonth(month: Int, year: Int): Int = TODO()
+fun daysInMonth(month: Int, year: Int): Int {
+    var leapYear = (year % 4 == 0)
+    if (year >= 1700 && year % 100 == 0 && year % 400 != 0) {
+        leapYear = false
+    }
+    when (month) {
+        1 -> return 31
+        3 -> return 31
+        5 -> return 31
+        7 -> return 31
+        8 -> return 31
+        10 -> return 31
+        12 -> return 31
+        4 -> return 30
+        6 -> return 30
+        9 -> return 30
+        11 -> return 30
+        2 -> (return if (leapYear) {
+            29
+        } else {
+            28
+        })
+        else -> return 0
+
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -59,4 +112,16 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+    return if (a <= r && b <= s) {
+        true
+    } else if (a <= s && b <= r) {
+        true
+    } else if (a <= r && c <= s) {
+        true
+    } else if (c <= r && a <= s) {
+        true
+    } else if (b <= r && c <= s) {
+        true
+    } else b <= s && c <= r
+}

@@ -68,7 +68,14 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    return when {
+        age / 10 % 10 == 1 -> "$age лет"
+        age % 10 == 1 -> "$age год"
+        age / 10 % 10 == 9 -> "$age лет"
+        else -> "$age года"
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -96,7 +103,20 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int {
+    if (kingX == rookX1 || kingY == rookY1) {
+        if (kingX == rookX2 || kingY == rookY2) {
+            return 3
+        } else {
+            return 1
+        }
+    } else if (kingX == rookX2 || kingY == rookY2) {
+        return 2
+    } else {
+        return 0
+    }
+
+}
 
 /**
  * Простая (2 балла)
@@ -112,7 +132,31 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = TODO()
+): Int {
+    //вычесляем разницу координат короля и слона
+    //если разница между осью Ох и Oy равны?тогда они находятся на одной диаганали
+    var res_x = bishopX - kingX
+    var res_y = bishopY - kingY
+    if (res_x < 0) {
+        res_x *= (-1)
+    }
+    if (res_y < 0) {
+        res_y *= (-1)
+    }
+
+    if (kingX == rookX || kingY == rookY) {
+        if (res_x == res_y) {
+            return 3
+        } else {
+            return 1
+        }
+    } else if (res_x == res_y) {
+        return 2
+    } else {
+        return 0
+    }
+
+}
 
 /**
  * Простая (2 балла)
