@@ -37,23 +37,22 @@ fun isNumberHappy(number: Int): Boolean {
  * Считать, что ферзи не могут загораживать друг друга.
  */
 fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
-    if (x1 == x2) {
-        return true
-    } else if (y1 == y2) {
-        return true
-    } else if (x2 - x1 == y2 - y1) {
-        return true
-    } else if ((x2 - x1) == 1) {
-        return true
-    } else if ((x2 - x1) == -1) {
-        return true
-    } else if ((y2 - y1 == 1)) {
-        return true
-    } else if ((y2 - y1 == -1)) {
-        return true
-    } else {
-        return false
+    /*чтобы определить являются ли они угрозой друг друг,необходимо
+    сравнить их координаты на осях Ox ,Oy и соотношения по диагонали
+    для диагонали ,необходима разность координат Ox ,Oy. Обозначим их как res_x res_y
+    если они равны,значит наши фигуры находятся на одной диагонали.*/
+    var res_x = x2 - x1
+    var res_y = y2 - y1
+    if (res_x < 0) {
+        res_x *= (-1)
     }
+    if (res_y < 0) {
+        res_y *= (-1)
+    }
+    if(res_x==res_y){
+        return true
+    }
+    return x1==x2 || y1==y2
 
 }
 

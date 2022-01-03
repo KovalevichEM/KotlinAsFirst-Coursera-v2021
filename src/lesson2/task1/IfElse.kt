@@ -4,6 +4,7 @@ package lesson2.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.max
+import kotlin.math.round
 import kotlin.math.sqrt
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
@@ -88,7 +89,27 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    var s1 = t1 * v1
+    var s2 = t2 * v2
+    var s3 = t3 * v3
+    var s_final = (s1 + s2 + s3) / 2
+    return if (s_final <= s1) {
+        var final = (s_final * t1) / s1
+        var finall = round(final * 100) / 100
+        finall
+    } else if (s_final < (s1 + s2)) {
+        var final = (s_final * (t1 + t2)) / (s1 + s2)
+        var finall = round(final * 10) / 10
+        finall
+    } else if (s_final < (s1 + s2 + s3)) {
+        var final = (s_final * (t1 + t2 + t3)) / (s1 + s2 + s3) + 1 + ((s_final - s1 - s2) / v3)
+        var finall = round(final * 10) / 10
+        finall
+    } else {
+        0.0
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -166,7 +187,36 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+
+fun triangleKind(a: Double, b: Double, c: Double): Int = TODO() /*{
+    var gipotenuze: Double
+    var katet1: Double
+    var katet2: Double
+    if(a>=b && a>=c){
+        gipotenuze=a
+        katet1=b
+        katet2=c
+    }else if(b>=a && b>=c){
+        gipotenuze=b
+        katet1=a
+        katet2=c
+    }else{
+        gipotenuze=c
+        katet1=a
+        katet2=b
+    }
+
+    if(sqrt(katet1) + sqrt(katet2) > sqrt(gipotenuze)){
+        return 0
+    }else if(sqrt(katet1)+ sqrt(katet2) < sqrt(gipotenuze)){
+        return 2
+    }else if(sqrt(katet1)+ sqrt(katet2) == sqrt(gipotenuze)){
+        return 1
+    }else{
+        return -1
+    }
+
+}*/
 
 /**
  * Средняя (3 балла)
